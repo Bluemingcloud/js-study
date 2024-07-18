@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input class="count" type="number" value="0" readonly> 
+    <button id="plus">&plus;</button>
+    <button id="minus">&minus;</button>
+    
+    <script>
+        var count = document.querySelector(".count");
+        var plus = document.querySelector("#plus");
+        var minus = document.querySelector("#minus");
+
+        plus.onclick = function() {            
+            count.value++;
+        }
+        minus.onclick = function() {
+            if(num.value == 0) return;
+            count.value--;
+        }
+    </script>
+
+
+</body>
+</html>

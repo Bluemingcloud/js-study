@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <h3>할일 목록 만들기</h3>
+
+    <div class="nameBox">
+        <input type="text" id="userName" placeholder="이름을 입력하세요">
+        <button type="button" id="btnName">확인</button>
+    </div>
+    
+    <div class="todoBox">
+        <input type="text" id="todo" placeholder="당신의 할일을 적으세요">
+        <button type="button" id="btnTodo">확인</button>
+    </div>
+
+    <ul class="list">
+
+    </ul>
+
+    <script>
+        var nameBox = document.querySelector(".nameBox");
+        var userName = document.querySelector("#userName");
+        var btnName = document.querySelector("#btnName");
+
+        btnName.onclick = function() {
+            if(userName.value == "") {
+                alert('이름을 입력하세요');
+                return;
+            } else {
+                var h4 = document.createElement("h4");
+                h4.innerHTML = userName.value + "님 안녕하세요";
+
+                for(var i = 0; i < nameBox.children.length; i++) {
+                    nameBox.children[i].style.display = "none";
+                }
+                nameBox.appendChild(h4);
+            }
+        }
+
+        var todoBox = document.querySelector(".todoBox");
+        var btnTodo = todoBox.querySelector("#btnTodo");
+        var list = document.querySelector(".list");
+        
+        btnTodo.onclick = function() {
+            var todo = todoBox.querySelector("#todo");
+            if(todo.value == "") {
+                alert('할일을 적으세요');
+                return;
+            } else {
+                var todoLi = document.createElement("li");
+                var span = document.createElement("span");
+                var deleteBtn = document.createElement("button");
+                var upBtn = document.createElement("button");
+                var downBtn = document.createElement("button");
+
+                span.innerHTML = todo.value;
+                span.style.display = "inline-block";
+                span.style.width = "100px";
+                span.style.overflow = "hidden";
+                span.style.textOverflow = "ellipsis";
+
+                deleteBtn.type = "button";
+                deleteBtn.innerHTML = "X";
+                deleteBtn.onclick = function() {
+                    this.parentElement.remove();
+                }
+
+                upBtn.type = "button";
+                upBtn.innerHTML = "&uparrow;";
+                upBtn.addEventListener('click', function() {
+                    move(this, "up");
+                });
+
+                downBtn.type = "button";
+                downBtn.innerHTML = "&downarrow;";
+                downBtn.addEventListener('click', function() {
+                    move(this, "down");
+                });
+
+                todoLi.appendChild(span);
+                todoLi.appendChild(deleteBtn);
+                todoLi.appendChild(upBtn);
+                todoLi.appendChild(downBtn);
+                list.appendChild(todoLi);
+                todo.value = "";
+            }
+        }
+
+        function move(node, str) {
+            var current = node.parentElement;
+            if(str == "up") {
+                var prev = node.parentElement.previousElementSibling;
+                if(prev == null) return;
+                list.insertBefore(current, prev);
+            } else if(str == "down") {
+                var next = node.parentElement.nextElementSibling;
+                if(next == null) return;
+                list.insertBefore(next, current);
+            } else {
+                console.log("함수 매개변수 입력 오류");
+                return;
+            }
+        }
+
+    </script>
+</body>
+</html>

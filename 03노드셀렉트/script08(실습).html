@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input:focus {
+            outline: none; /* 포커스시 기본 보더 x */
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+아이디 값이 변경되면 예시처럼 구현
+</pre>
+
+    아이디: <input type="text" name="id"><br>
+
+
+    <span class="idMsg"></span>
+
+    <script>
+        var idCheck = document.querySelector("input[name=id]");
+        var idMsg = document.querySelector(".idMsg");
+
+        idCheck.addEventListener('keyup', function() {
+            
+            if(idCheck.value.length < 4) {
+                idCheck.style.border = "1px solid red";
+                idMsg.textContent = "아이디는 4글자 이상만 가능합니다.";
+            } else {
+                idCheck.style.border = "1px solid green";
+                idMsg.textContent = "";
+            }
+        })
+        
+    </script>
+    
+</body>
+</html>

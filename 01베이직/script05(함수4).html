@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        //ES6 JS함수 미리보기
+        // var func1 = function(a, b) {
+        //     return a + b;
+        // }
+        var func1 = (a, b) => a + b;
+
+        // var func2 = function(a, b) {
+        //     var sum = 0;
+        //     for(var i = a; i <= b; i++) {
+        //         sum += i;
+        //     }
+        //     return sum;
+        // }
+        var func2 = (a, b) => {
+            var sum = 0;
+            for(var i = a; i <= b; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+
+        // var func3 = function(a) {
+        //     console.log('매개변수:' + a);
+        // }
+        var func3 = a => '매개변수:' + a;
+        
+        
+        console.log(func1(4, 5));
+        console.log(func2(1, 10));
+        console.log(func3('홍길동'));
+
+    </script>
+    
+</body>
+</html>

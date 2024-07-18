@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<pre>
+1. 예약버튼 클릭시 좌석이 최소한개이상 체크되어있지 않다면 경고창을 띄우는 코드를 작성하세요.
+2. 체크된 값은 예약확인란에 출력해주세요.
+3. 힌트 - 버튼클릭시 배열에 값을 저장하고, 화면에는 문자열로 만들어 출력 합니다.😊
+</pre>
+    <form>
+        좌석:
+        <input type="checkbox" name="seat" value="1">1
+        <input type="checkbox" name="seat" value="2">2
+        <input type="checkbox" name="seat" value="3">3
+        <input type="checkbox" name="seat" value="4">4
+        <input type="checkbox" name="seat" value="5">5
+        <input type="checkbox" name="seat" value="6">6
+        <input type="checkbox" name="seat" value="7">7
+		<input type="checkbox" name="seat" value="8">8
+		<input type="checkbox" name="seat" value="9">9
+		<input type="checkbox" name="seat" value="10">10
+
+
+        <br>
+        <button type="button" id="btn">예약</button>
+		
+		<br>
+		예약번호:<div id="result"></div>
+		
+		
+    </form>
+
+    <script>
+        var seat = document.getElementsByName("seat");
+        var btn = document.getElementById("btn");
+        var result = document.getElementById("result");
+        btn.onclick = function() {
+            var msg = "";
+            for(var i = 0; i < seat.length; i++) {
+                if(seat[i].checked) msg += seat[i].value + "번 ";
+            }
+            if(msg === "") alert('좌석체크는 필수 입니다.');
+            result.innerHTML = msg;
+            
+        }
+
+    </script>
+
+    <hr>
+
+    <form>
+        좌석:
+        <input type="checkbox" name="seat2" value="1">1
+        <input type="checkbox" name="seat2" value="2">2
+        <input type="checkbox" name="seat2" value="3">3
+        <input type="checkbox" name="seat2" value="4">4
+        <input type="checkbox" name="seat2" value="5">5
+        <input type="checkbox" name="seat2" value="6">6
+        <input type="checkbox" name="seat2" value="7">7
+        <input type="checkbox" name="seat2" value="8">8
+        <input type="checkbox" name="seat2" value="9">9
+        <input type="checkbox" name="seat2" value="10">10
+
+
+        <br>
+        <button type="button" id="btn2">예약</button>
+        
+        <br>
+        예약번호:<div id="result2"></div>
+        
+        
+    </form>
+
+    <script>
+        var seat2 = document.getElementsByName("seat2");
+        var btn2 = document.getElementById("btn2");
+        var result2 = document.getElementById("result2");
+
+        btn2.onclick = function() {
+            var selectedSeats = [];
+            for (var i = 0; i < seat2.length; i++) {
+                if (seat2[i].checked) {
+                    selectedSeats.push(seat2[i].value + "번");
+                }
+            }
+                
+            if (selectedSeats.length === 0) {
+                alert('좌석체크는 필수 입니다.');
+                return;
+            }
+
+            result2.innerHTML = selectedSeats.join(' ');
+        }
+
+    </script>
+    
+
+</body>
+</html>

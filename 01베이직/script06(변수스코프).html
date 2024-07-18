@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // JS var 변수의 스코프는 function 입니다.
+
+        var a = 1;
+        if(a == 1) {
+            var a = 2;
+        }
+        console.log(a);
+
+        for(var i = 1; i <= 10; i++) {
+        }
+        console.log(i); // 11
+
+        // function 안에서만 지역변수 취급
+        var func1 = function() {
+            var a = 10;
+            return a;
+        } 
+        console.log(a); // 위에 바뀐 2 가 출력
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- change 이벤트 걸기 (방법은 자유, 결과는 console로 실행되는 것만 확인) -->
+    <select name="loaction" id="select">
+        <option value="서울시">서울시</option>
+        <option value="경기도">경기도</option>
+        <option value="부산시">부산시</option>
+    </select>
+
+    <!-- focus, blur 이벤트 걸기 -->
+    이름: <input type="text" id="name" onblur="myBlur(this)" />
+
+    <!-- mouseenter, mouoseout 이벤트 걸기 -->
+    <div style="width: 100px; height: 100px; border: 1px solid #777;" id="box">
+    </div>
+
+    <script>
+        // select -> onchange
+        // 기본이벤트
+        var select = document.getElementById("select");
+        select.onchange = function() {
+            console.log(this.value);
+        };
+
+        // input -> onfocus, onblur
+        // 인라인 이벤트
+        // function myFocus(a) {
+        //     a.style.backgroundColor = 'red';
+        //     console.log('focus');
+        // }
+        function myBlur(a) {
+            a.style.backgroundColor = 'white';
+            console.log('blur');
+        }
+        // 기본 이벤트
+        var x = document.getElementById("name");
+        x.onfocus = function() {
+            this.style.backgroundColor = 'green';
+            console.log('focus');
+        };
+
+        // 표준이벤트
+        var box = document.getElementById("box");
+        box.addEventListener('mouseenter', function() {
+            box.style.backgroundColor = 'blue';
+            console.log('mouseenter');
+        });
+        // 화살표 함수 표현
+        box.addEventListener('mouseout', () => {
+            box.style.backgroundColor = 'white';
+            console.log('mouseout');
+        });
+
+    </script>
+    
+</body>
+</html>

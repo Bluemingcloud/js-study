@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button type="button" id="btn">앞에서부터 삭제하기</button>
+    <ul class="list">
+        <li>1. 홍길동</li>
+        <li>2. 이순신</li>
+        <li>3. 홍길자</li>
+        <li ondblclick="del(this)">4. 홍길숙</li>
+    </ul>
+
+    <script>
+        // 자식을 삭제 removeChild(삭제할 태그)
+        var btn = document.getElementById("btn");
+        var list = document.querySelector(".list");
+
+        btn.onclick = function() {
+            // list.removeChild();
+            // console.dir(list); // console.dir 사용할 수 있는 속성 목록
+            // console.log(list.children); // children : 자식태그전체를 담은 배열
+            
+            // list.removeChild(list.children[0]);
+            list.removeChild(list.firstElementChild);
+        }
+
+        function del(a) {
+            a.remove(); // 태그 삭제
+        }
+    </script>
+
+</body>
+</html>

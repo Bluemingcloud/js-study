@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 배열생성
+        // 1. 대괄호에 요소 나열
+        var arr = [1,2,3,4];
+        var arr2 = [1,2,3, 'a', 'b']; // 숫자와 문자열 같이 사용 가능(좋은 방법이 아님!)
+
+        console.log(arr);
+        console.log(arr2);
+        console.log(arr[0]);    // 1
+        arr[0] = 10; // 값의 변경
+        console.log(arr[0]);    // 10
+        console.log('배열길이:',arr.length);
+        
+        console.log('---------------------------------------------------------------');
+        // 2. new Array()
+        var arr3 = new Array(); // 빈 배열을 만듬
+        var arr4 = new Array(5); // 크기가 5인 빈 배열
+        var arr5 = new Array(1,2,3,4,5); // 초기값 지정
+
+        console.log(arr3);  // []
+        console.log(arr4);  // [empty x 5]
+        console.log(arr5);  // [1,2,3,4,5]
+
+        var arr6 = [1,2,3,4,5];
+        console.log(arr5 == arr6);
+    </script>
+    
+</body>
+</html>

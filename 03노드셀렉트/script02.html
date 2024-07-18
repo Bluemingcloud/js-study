@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button type="button" id="btn">쿼리셀렉터</button>
+
+    <div class="box">
+        <ul>
+            <li>홍길동</li>
+            <li>이순신</li>
+            <li>홍길자</li>
+        </ul>
+    </div>
+
+    <script>
+        var btn = document.querySelector("#btn"); // css 선택자(id)
+        btn.addEventListener('click', function() {
+
+            // li태그 querySelector
+            // var li = document.querySelector(".box > ul > li");
+            // console.log(li.innerHTML);
+
+            var li = document.querySelectorAll(".box > ul > li");
+            // console.log(li);
+            for(var i = 0; i < li.length; i++) {
+                console.log(li[i].innerHTML);
+            }
+        });
+
+        // var btn = document.getElementById("btn");
+        // var li = document.querySelectorAll(".box > ul > li");
+        // btn.addEventListener('click', () => Array.from(li).forEach((element) => console.log(element.innerHTML)));
+
+
+    </script>
+
+</body>
+</html>
