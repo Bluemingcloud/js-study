@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button type="button" onclick="move()">네이버 이동</button>
+    
+    <script>
+        function move() {
+            location.href = "https://www.naver.com";
+        }
+
+        setInterval(function() {
+            location.reload();
+        }, 5000);
+    </script>
+</body>
+</html>

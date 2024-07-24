@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .mySlide .my-img {
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        .wrap-slide {
+            position: relative;
+        }
+        .wrap-slide > .stop-btn {
+            position: absolute;
+            left: 50%;
+            bottom: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 100%;
+        }
+
+        @keyframes fade-in {
+            from{
+                opacity: 0;
+            } to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <div class="wrap-slide">
+        <div class="mySlide">
+            <img src="img/slide1.jpg" alt="사진" class="my-img">
+        </div>
+    
+        <button type="button" class="stop-btn stop" id="stop-btn"><i class="fa-solid fa-stop"></i></button>
+    </div>
+
+    <script>
+
+        var num = 1;
+        var stopId
+ 
+        var mySlide = document.querySelector(".mySlide");
+
+        function changeImg() {
+
+            if(num == 4) num = 0;
+
+            var img = document.createElement("img");
+            img.src = "img/slide" + ++num + ".jpg";
+            img.classList.add("my-img");
+
+            mySlide.appendChild(img); // 하나 추가
+            mySlide.removeChild(mySlide.firstElementChild); // 첫번째 자식노드 제거
+        }
+
+        // 프로그램 시작시에 동작할 기능을 적는다.
+        (function() {
+            stopId = setInterval(changeImg, 5000);
+        })();
+
+        // 일시정지, 재개
+        var stopBtn = document.getElementById("stop-btn");
+        stopBtn.onclick = function() {
+
+            if(stopBtn.classList.contains("stop")) { // stop 클래스가 있다면 중지
+                stopBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                clearInterval(stopId);
+            } else { // stop 클래스가 없다면 재개
+                stopBtn.innerHTML = '<i class="fa-solid fa-stop"></i>';
+                stopId = setInterval(changeImg, 5000);
+
+            }
+
+            stopBtn.classList.toggle("stop");
+
+        }
+
+
+    </script>
+
+</body>
+</html>

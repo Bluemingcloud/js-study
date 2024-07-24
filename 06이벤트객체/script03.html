@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .func1 {width: 300px; height: 300px; background-color: red;}
+        .func2 {width: 200px; height: 200px; background-color: yellow;}
+        .func3 {width: 100px; height: 100px; background-color: blue;}
+
+    </style>
+</head>
+<body>
+
+    <h3>이벤트 버블링 vs 이벤트 캡쳐링</h3>
+    <div class="func1">
+        <div class="func2">
+            <div class="func3">
+                func3(자식)
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /*
+        이벤트 버블링 : 이벤트가 자식 -> 부모로 동작하는 특성
+        3번을 클릭하면 3 -> 2 -> 1 순으로 동작이 됩니다.
+        */
+        var func1 = document.querySelector(".func1");
+        var func2 = document.querySelector(".func2");
+        var func3 = document.querySelector(".func3");
+
+        // 이벤트 버블링 예제
+        // func1.onclick = function() {
+        //     alert("func1");
+        // }
+        // func2.onclick = function() {
+        //     alert("func2");
+        //     event.stopPropagation(); // 이벤트 버블링 or 캡쳐링 중단 <- 왠만하면 쓸일이 없음
+        // }
+        // func3.onclick = function() {
+        //     alert("func3");
+        // }
+
+        /*
+        이벤트 캡쳐링 : 이벤트가 부모 -> 자식으로 동작하는 특성
+        캡쳐링은 addEventListener 로만 구현이 가능하고, 실제로 구현할 일은 거의 없습니다.
+        이벤트 실행은 1 -> 2 -> 3 순서로 동작합니다.
+        */
+        func1.addEventListener('click', function() {
+            alert("func1");
+        }, true); // 3번째 매개변수 true 로 넣으면 캡쳐링으로 동작
+
+        func2.addEventListener('click', function() {
+            alert("func2");
+            event.stopPropagation();
+        }, true);
+        
+        func3.addEventListener('click', function() {
+            alert("func3");
+        }, true);
+
+    </script>
+</body>
+</html>

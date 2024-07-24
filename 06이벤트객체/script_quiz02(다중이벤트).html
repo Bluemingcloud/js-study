@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table { border-collapse: collapse; width:500px;}
+        thead th, tbody td {
+            border: 1px solid black;
+
+        }
+    </style>
+
+</head>
+<body>
+    
+    <h2>event속성을 이용해서 다음을 구현하세요.</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            <tr>
+                <td>1</td>
+                <td>안녕하세요!!</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>오늘은</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>이벤트 위임을 사용해서</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>삭제를 해볼겁니다.</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="writeBox">
+        <input type="text" id="title"><br>
+        <textarea name="content" id="content"></textarea><br>
+        <button type="button" id="writeBtn">등록</button>
+    </div>
+
+    <script>
+        var list = document.querySelector(".list");
+        list.addEventListener('click', function() {
+            if(event.target.tagName != "BUTTON") return;
+            var bno = event.target.parentElement.parentElement.firstElementChild.innerHTML;
+
+            if(confirm('삭제 하시겠습니까?\n삭제할 글 번호: ' + bno)) {
+                event.target.parentElement.parentElement.remove();
+            } else {
+                return;
+            }
+        });
+
+        var writeBtn = document.getElementById("writeBtn");
+        writeBtn.addEventListener('click', function() {
+            if(document.getElementById("title").value == "") {
+                alert("제목을 입력하세요");
+                return;
+            }
+            if(document.getElementById("content").value == "") {
+                alert("내용을 입력하세요");
+                return;
+            }
+            if(!confirm("등록하시겠습니까?")) {
+                document.getElementById("title").value = "";
+                document.getElementById("content").value = "";
+                return;
+            }
+            var lastBno =  list.lastElementChild != null ? list.lastElementChild.firstElementChild.innerHTML : 0;
+            var tr = document.createElement("tr");
+            var tdBno = document.createElement("td");
+            var tdTitle = document.createElement("td");
+            var tdContent = document.createElement("td");
+            var tdDelBtn = document.createElement("td");
+
+            tdBno.innerHTML = parseInt(lastBno) + 1;
+            tdTitle.innerHTML = document.getElementById("title").value;
+            tdContent.innerHTML = document.getElementById("content").value;
+            tdDelBtn.innerHTML = list.firstElementChild.lastElementChild.innerHTML;
+            
+            tr.appendChild(tdBno);
+            tr.appendChild(tdTitle);
+            tr.appendChild(tdContent);
+            tr.appendChild(tdDelBtn);
+
+            list.appendChild(tr);
+            document.getElementById("title").value = "";
+            document.getElementById("content").value = "";
+        });
+
+
+    </script>
+
+</body>
+</html>

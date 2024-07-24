@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .movieList {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .movieList > .movie {
+            flex-basis: 25%;
+            height: 300px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button type="button" onclick="ajax()">데이터 가져오기</button>
+    <div class="pageNation">
+        <!-- <a href="#">1</a> -->
+    </div>
+    <div class="movieList">
+        <!-- <div class="movie">
+            <img src="#" alt="커버이미지">
+            <div class="inner">
+                <b>제목</b>
+                <p>내용</p>
+            </div>
+        </div> -->
+    </div>
+
+
+    <div class="overlay">로딩중...</div>
+
+    <script>
+        /*
+        function ajax() {
+            // fetch("https://yts.mx/api/v2/list_movies.json")
+            // .then(function(response) {
+            //     return response.json();
+            // })
+            // .then(function(data) {
+            //     console.log(data);
+            // });
+            
+            fetch("https://yts.mx/api/v2/list_movies.json?limit=20&sort_by=download_count&genre=Action")
+                .then(response => response.json())
+                .then(obj => obj.data.movies)
+                .then(movies => {
+                    movies.forEach(movie => {
+                        var coverImg = movie.medium_cover_image;
+                        var title = movie.title;
+                        var summary = movie.summary;
+
+                        var img = document.createElement("img");
+                        img.src = coverImg;
+                        
+                        var inner = document.createElement("div");
+                        inner.classList.add("inner");
+
+                        var titleB = document.createElement("b");
+                        titleB.innerHTML = title;
+                        var summaryP = document.createElement("p");
+                        summaryP.innerHTML = summary;
+
+                        inner.appendChild(titleB);
+                        inner.appendChild(summaryP);
+
+                        var movieCard = document.createElement("div");
+                        movieCard.classList.add("movie");
+                        movieCard.appendChild(img);
+                        movieCard.appendChild(inner);
+                        
+                        document.querySelector(".movieList").appendChild(movieCard);
+                    });
+                });
+
+        }
+        */
+
+        var movieList = document.querySelector(".movieList");
+        var overlay = document.querySelector(".overlay");
+
+        function ajax() {
+            overlay.style.display = "block";
+
+            fetch("https://yts.mx/api/v2/list_movies.json?limit=20&sort_by=download_count&genre=Action&page=" + page)
+                .then(response => response.json())
+                .then(obj => obj.data.movies)
+                .then(movies => {
+                    var html = "";
+                    movies.forEach(movie => {
+                        var coverImg = movie.medium_cover_image;
+                        var title = movie.title;
+                        var summary = movie.summary;
+
+                        html += '<div class="movie">';
+                        html += '<img src="' + coverImg + '" alt="커버이미지">';
+                        html += '<div class="inner">';
+                        html += '<b>' + title + '</b>';
+                        html += '<p>' + summary + '</p>';
+                        html += '</div>';
+                        html += '</div>';
+                    });
+                    movieList.innerHTML = html;
+                    overlay.style.display = "none";
+                });
+        }
+
+        var page = 1;
+        // 홈페이지 실행시 page a 태그 생성
+        window.onload = function() {
+            for(var i = 1; i <= 10; i++) {
+                var a = document.createElement("a");
+                a.href = "#";
+                a.innerHTML = i;
+                pageNation.appendChild(a);
+            }
+        }
+        
+        // pageNation 이벤트
+        var pageNation = document.querySelector(".pageNation");
+        pageNation.addEventListener('click', (e) => {
+            e.preventDefault();
+            if(e.target.tagName != "A") return;
+
+            page = e.target.innerHTML; // 멤버변수 page 에 저장
+            ajax();
+        });
+
+
+
+    </script>
+</body>
+</html>

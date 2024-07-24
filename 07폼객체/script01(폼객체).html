@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="list.board" name="myForm">
+        이름:<input type="text" name="userName">
+        분야:
+        <input type="checkbox" name="info" value="js">js
+        <input type="checkbox" name="info" value="html">html
+        <input type="checkbox" name="info" value="css">css
+
+        <input type="submit" value="보내기" id="btn">
+    </form>
+
+    <script>
+        //form 태그는 document의 자식으로 document.폼네임.인풋네임 으로 접근을 할 수 있다.
+        var btn = document.getElementById("btn");
+        btn.onclick = function() {
+            
+            // 1. 서브밋 버튼 중단
+            event.preventDefault(); 
+
+            // 2. 폼 태그 접근
+            // console.log(document.myForm.userName);
+            // console.log(document.myForm.info);
+            var myForm = document.myForm;
+
+            // 3. 조건 부여
+            if(myForm.userName.value.length < 4) {
+                alert('이름은 4글자 이상입니다.');
+                myForm.userName.focus(); // input 태그에 포커싱
+                return; // 함수종료
+            } else {
+                var arr = myForm.info;
+                var cnt = 0;
+                for(var i = 0; i < arr.length; i++) {
+                    if(arr[i].checked) {
+                        cnt++;
+                    }
+                }
+                if(cnt == 0) {
+                    alert('적어도 하나의 분야를 선택하세요');
+                    return;
+                }
+            }
+
+            // 4. 폼 서브밋 js
+            myForm.submit();
+            
+        }
+    </script>
+    
+</body>
+</html>

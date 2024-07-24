@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3>localStorage와 sessionStorage는 브라우저 내에 키=값을 저장하는 저장소</h3>
+    <h3>로컬스토리지는 브라우저를 종료하더라도 영구저장, 세션스토리지는 브라우저를 종료하면 사라집니다.</h3>
+    <h3>JSP에서 사용하는 세션과는 전혀 무관</h3>
+    
+    <button type="button" id="createSession">세션만들기</button>
+    <button type="button" id="removeSession">세션삭제하기</button>
+
+    <button type="button" id="createLocalSession">로컬세션만들기</button>
+    <button type="button" id="removeLocalSession">로컬세션삭제하기</button>
+
+    <script>
+        var createSession = document.getElementById("createSession");
+        var removeSession = document.getElementById("removeSession");
+
+        createSession.onclick = function() {
+            // JSP - session.SetAttribute(), session.getAttribute(), session.removeAttribute()
+            // setItem() : 값 저장
+            sessionStorage.setItem("name", "홍길동"); // 키, 값
+            sessionStorage.setItem("age", "20");
+            sessionStorage.setItem("abc", JSON.stringify(['a', 'b', 'c'])); // 반드시 문자열만 저장가능
+
+            // getItem() : 값 얻기
+            var name = sessionStorage.getItem("name");
+            var age = sessionStorage.getItem("age");
+            var abc = sessionStorage.getItem("abc");
+
+            console.log(name);
+            console.log(age);
+            console.log(JSON.parse(abc));
+        }
+
+        removeSession.onclick = function() {
+            // removeItem() : 값 삭제
+            sessionStorage.removeItem("age");
+            alert("age 세션 삭제 완료!");
+        }
+
+
+        // 로컬 스토리지에 세션 저장
+        var createLocalSession = document.getElementById("createLocalSession");
+        var removeLocalSession = document.getElementById("removeLocalSession");
+
+        createLocalSession.onclick = function() {
+            // setItem() : 값 저장
+            localStorage.setItem("name", "홍길동"); // 키, 값
+            localStorage.setItem("age", "20");
+            localStorage.setItem("abc", JSON.stringify(['a', 'b', 'c'])); // 반드시 문자열만 저장가능
+
+            // getItem() : 값 얻기
+            var name = localStorage.getItem("name");
+            var age = localStorage.getItem("age");
+            var abc = localStorage.getItem("abc");
+
+            console.log(name);
+            console.log(age);
+            console.log(JSON.parse(abc));
+        }
+
+        removeLocalSession.onclick = function() {
+            // removeItem() : 값 삭제
+            localStorage.removeItem("age");
+            alert("age 로컬 세션 삭제 완료!");
+        }
+    </script>
+</body>
+</html>

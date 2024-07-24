@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        fetch("hello.txt")
+        .then(function(response) {
+            response.text().then(function(data) {
+                // console.log(data);
+                var h3 = document.createElement("h3");
+                h3.innerHTML = data;
+                document.querySelector("body").appendChild(h3);
+            });
+        });
+
+        /*
+        Promise 객체(ES6에서 새로 나온 객체)
+        fetch의 실행결과를 반환해주는 객체
+        3가지의 상태를 나타냄
+        1. fulfilled : 성공적 수행
+        2. pendding : 대기상태
+        3. reject : 거부됨(실패)
+
+        객체안의 함수
+        then(콜백함수)
+        콜백 <- 실행 결과가 얼마나 걸릴지 모르니, call 했을때 결과가 back 될 때 받는 함수 
+        */
+
+        // 1st - Promise 객체 생성
+        // var promise = fetch("hello.txt") // Promise 객체 반환
+        // promise.then(function(response) {
+        //     console.log(response);
+        // })
+
+        // 함수적표현
+        // fetch("hello.txt")
+        // .then(function(response) {
+        //     console.log(response);
+        // })
+
+        // fetch("hello.txt").then(response => console.log(response));
+        // fetch("hello.txt").then(response => response.text().then(data => console.log(data)));
+
+        // 2nd
+        // 순서 보장이 되지 않음
+        // console.log(1);
+        // fetch("hello.txt")
+        // .then(response => {
+        //     response.text()
+        //     .then(data => {
+        //         console.log(data);
+        //         console.log(2);
+        //     });
+        // });
+
+        // console.log(3);
+
+        // 3nd
+        // fetch("hello.txt")
+        // .then(response => {
+            
+        //     if(response.status != 200) {
+        //         alert("요청에 실패했습니다.");
+        //         return;
+        //     }
+
+        //     // console.log(response);
+        //     // response 에서 데이터를 꺼냄
+        //     // response.text(); // 문자열 형태로 데이터를 꺼냄. 반환은 Promise 객체 -> then(콜백함수) 사용가능
+        //     response.text().then(data => {
+        //         console.log(data);
+        //     });
+        // });
+
+        // 4th
+        // json 타입 형태의 데이터를 꺼냄
+        // fetch("hello.json")
+        // .then(function(response) {
+        //     response.json().then(function(data) {
+        //         console.log(data.name);
+        //         console.log(data.age);
+        //     });
+        // });
+
+        // 5th
+        fetch("hello.json")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            return data;
+        })
+        .then(function(data) {
+            return data;
+        })
+        .then(function(data) {
+            console.log(data);
+        })
+        .catch(function(e) {
+            console.log(e);
+        });
+
+        fetch("hello.json")
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(e => console.log(e));
+    
+
+        
+    </script>
+
+    
+    
+</body>
+</html>
