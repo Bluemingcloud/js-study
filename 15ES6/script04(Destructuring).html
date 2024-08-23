@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // JSON 구조에서 사용
+        let list = [
+            {
+                "num" : 1,
+                "title" : "hello",
+                "info" : ["apple", "banana"],
+                "profile" : {birth: "2020", img: "abcd.png"}
+            },
+            {
+                "num" : 2,
+                "title" : "good bye",
+                "info" : ["melon", "orange"],
+                "profile" : {birth: "2024", img: "efg.png"}
+            }
+        ];
+
+        // 두번째 객체를 가져오려면?
+        // let [ , a] = list;
+        // console.log(a); // Object 
+
+        let [, {num, title}] = list; // 자동적으로 num 값을 num 이라는 변수명으로 재할당
+        console.log(num, title); // 2 'good bye'
+
+        // let[, {num}] = list; 에러 : let num 이 이미 선언되어 중복 선언 불가
+
+        let[, {num: n, title: t}] = list;
+        console.log(n, t); // 2 'good bye'
+        
+        let [, {info : [x, y]}] = list;
+        console.log(x, y); // melon orange
+        
+        // 두번째 객체안의 profile 객체에서 birth, img 뽑기
+        let [ , {profile : {birth: b, img: i}}] = list;
+        let [ , {info : [a, ]}] = list;
+        
+        console.log(b, i);
+
+    </script>
+
+</body>
+</html>

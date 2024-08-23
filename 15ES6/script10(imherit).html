@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        class Shape {
+            func = () => console.log("Shape!");
+        }
+
+        class Rect extends Shape {
+
+            constructor(width, height) { // Javascript 는 super() 생략시 자동으로 만들어 주지 않는다!
+                super(); // 생성자 오버로딩시 super() 로 부모 클래스와 반드시 연결 명시
+                this.width = width;
+                this.height = height;
+            }
+
+            func = () => console.log("Rectangle!"); // 메서드 오버라이딩
+            
+        }
+
+        let r = new Rect();
+
+        r.func(); // 부모 클래스 메서드 물려받음, 오버라이딩 됨 : Rectangle!
+
+    </script>
+    
+</body>
+</html>

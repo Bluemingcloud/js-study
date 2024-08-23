@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script type="module"> // html 에서 사용할 일이 거의 없음. 참고만 해두기
+
+        // html5 에서 예외적으로 module 방식을 쓰려면 type=module 을 씁니다.
+
+        // named export 방식
+        import {name, age, info} from './script11.js';
+
+        console.log(name); // 홍길동
+        console.log(age); // 20
+        info(); // 이름: 홍길동, 나이: 20
+        
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+    
+    <script>
+        var a = 10;
+        if(true) {
+            var a = 100;
+        }
+        console.log(a); // 100
+
+        let b = 10;
+        if(true) {
+            let b = 100;
+        }
+        console.log(b); // 10
+
+        //let b = 20; // 에러
+
+        const GENDER = "main";
+        // GENDER = "change"; // 에러
+        console.log(GENDER);
+        
+        // li를 얻어서 반복으로 이벤트를 건다면?
+        // var li = document.querySelectorAll("li")
+        // for(var i = 0; i < li.length; i++) {
+        //     li[i].addEventListener('click', function() {
+        //         console.log(i); // 모두 5로 출력
+        //     })
+        // }
+        // i 는 5 로 전역변수 취급(함수스코프 -> for, if 문은 함수가 아니다!)
+
+        // let 으로 사용!
+        var li = document.querySelectorAll("li");
+        for(let i = 0; i < li.length; i++) {
+            li[i].addEventListener('click', function() {
+                console.log(i); // 0, 1, 2, 3, 4 출력
+            })
+        }
+        
+        
+    </script>
+
+</body>
+</html>

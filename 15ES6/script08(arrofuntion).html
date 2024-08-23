@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // 응용
+        let arr = [1, 2, 3];
+
+        // arr.forEach(function(v, i) {
+        //     console.log(v);
+        // });
+        
+        arr.forEach((v, i) => console.log(v));
+
+        // setInterval(function() {
+        //     console.log(1);
+        // }, 1000);
+        
+        //setInterval(() => console.log(1), 1000);
+
+
+        // ajax 에서 사용하기
+
+        // fetch("url")
+        // .then(function(response) {
+        //     return response.json();
+        // })
+        // .then(function(data) {
+        //     console.log(data);
+        // })
+
+        // fetch("url")
+        // .then(response => response.json())
+        // .then(data => console.log(data));
+
+        // filter 함수 
+        // filter(콜백(현재값, 인덱스, 현재배열))
+
+        let list = [1, 2, 3, 4, 5, 6, 7, 8];
+        let result = list.filter((v, i) => v % 2 == 0) // 반환 값을 필터링(짝수만 리턴)
+
+        console.log(...result); // 2 4 6 8
+        
+        // map 함수
+        // map(콜백(현재값, 인덱스, 현재배열))
+
+        let result2 = list.map((v, i) => v * v); // 새로운 배열을 만들어 반환
+        console.log(...result2); // 1 4 9 16 25 36 49 64
+
+        
+
+
+    </script>
+
+</body>
+</html>

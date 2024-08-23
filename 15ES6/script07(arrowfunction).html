@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // a(); // 호이스팅 불가(함수를 선언하고 사용해야 한다!)
+
+        // // 기존 익명함수 사용
+        // var a = function() {
+        //     console.log("익명함수 실행");
+        // }
+
+        // a(); // Arrow function 또한 익명함수이므로 초기화 이전 사용 불가(호이스팅 불가)
+
+        let a = () => {
+            console.log("익명함수 실행");
+        }
+
+        // 문법 1. 코드가 한줄이면 {} 생략 가능(자동 리턴)
+
+        // let a2 = (x, y) => {
+        //     return x + y;
+        // }
+
+        let a2 = (x, y) => x + y;
+        console.log(a2(1, 2)); // 1 + 2 = 3
+
+        // default 사용
+        let a3 = (x, y = 20) => x + y;
+        console.log(a3(10)); // 10 + 20 = 30
+
+        // 매개변수 없는 익명함수
+        let aa = () => 1 + 2;
+        console.log(aa()); // 3
+        console.log(aa); // 함수 객체가 반환된다!
+        
+        
+        // 문법 2. 매개변수가 1개면 () 생략 가능
+        
+        // let a4 = (name) => console.log(name);
+        
+        let a4 = name => console.log(name);
+        a4("홍길동"); // 홍길동
+        
+        // 문법 3. 객체를 반환하려면 () 로 묶어줍니다.
+        // let a5 = a => {
+        //     return {"number" : a};
+        // }
+
+        let a5 = a => ({"number" : a});
+        console.log(a5(100)); // 객체 반환 {number: 100}
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+    
+    <div class="box">
+
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            //클라이언트 로딩보다 늦게실행됨.....
+            var str = "";
+            str += "<a href='#'>태그1</a>";
+            str += "<a href='#'>태그2</a>";
+            str += "<a href='#'>태그3</a>";
+            $(".box").html(str);
+        });
+
+        // 이 당시에는 a 태그 가 없으므로 이벤트가 걸리지 않음
+        // $(".box > a").click(function() {
+        //     event.preventDefault();
+        //     console.log("이벤트가 실행 되나요?");
+        // })
+
+        // 이벤트 위임 - 부모에 이벤트를 걸고 자식에서 위임을 받음
+        $(".box").on("click", "a", () => { // .box에 click, a 태그한테 위임
+            console.log("이벤트가 실행 되나요?");
+        });
+
+        $(".box").on('mouseenter', () => { // 일반적인 이벤트
+            console.log(111111);
+        }).on('mouseleave', () => { // 이벤트 체이닝
+            console.log(222222);
+        });
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+</body>
+</html>

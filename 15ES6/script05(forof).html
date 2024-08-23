@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let arr = [1, 2, 3, 4, 5];
+
+        // for(var i in arr) {
+        //     console.log(i); // 인덱스 0 1 2 3 4
+        //     console.log(arr[i]); // 값 1 2 3 4 5
+        // }
+
+        // arr.forEach(function(value, index) {
+        //     console.log(index, "은(는)", value);
+        // })
+
+        for(let i of arr) {
+            console.log(i); // 값 바로 사용 1 2 3 4 5
+        }
+
+        let arr2 = [{a: 1, b: "홍길동"}, {a: 2, b: "이순신"}];
+        for(let i of arr2) { // let i 는 블록 스코프!
+            console.log(i); // 객체1 객체2
+        }
+
+        for(let {a, b} of arr2) { // 구조분해재할당 사용가능
+            console.log(a, b); // 1 '홍길동' 2 '이순신'
+        }
+
+
+    </script>
+    
+</body>
+</html>
